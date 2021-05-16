@@ -2,20 +2,26 @@
 
 This repository contains the necessary Jupyter Notebooks and code to follow the book **"Symbolic Computation with Python and [SymPy](https://github.com/sympy/sympy/)"**, which can be purchased at:
 
-* Printed version from [Amazon](https://www.amazon.com/dp/B08QWBY5WV/ref=sr_1_1?dchild=1&keywords=Symbolic+Computation+with+Python+and+SymPy&qid=1608389036&sr=8-1): it should be available in all amazon markets (COM, DE, IT, UK, ...).
-* Ebook coming soon.
+* Printed version from:
+  * [Amazon](https://www.amazon.com/dp/B08QWBY5WV/ref=sr_1_1?dchild=1&keywords=Symbolic+Computation+with+Python+and+SymPy&qid=1608389036&sr=8-1): it should be available in all amazon markets (COM, DE, IT, UK, ...).
+  * [Barnes and Noble](https://www.barnesandnoble.com/w/symbolic-computation-with-python-and-sympy-davide-sandon/1138719014?ean=9781666241198)
+* Ebook from [Barnes and Noble](https://www.barnesandnoble.com/w/symbolic-computation-with-python-and-sympy-davide-sandona/1138690415?ean=2940162333654).
 
 <a href="assets/cover.jpg"><img src="assets/cover.jpg" width=400/></a>
 
 Please, read the [preview](assets/book-preview.pdf) to understand what this book offers and who should read it.
 
-## Notebooks
+## Notebooks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
 
 The repository contains a list of notebooks, each one named after a chapter. Notebooks only contain the code: they are meant to be followed by Readers. The explanations for the code can be found in the book.
 
 Some chapters offers an *Advanced Topics* section, which is meant to be optional but highly recommended.
 
 **The chapters containing exercises are not included in this repository**: this is done intentionally to force the Readers to actively follow the book, code their attempts and understand the different steps, hence gaining experience with SymPy.
+
+You can try the notebooks without downloading or installing the software by clicking the following button:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
 
 ## Code
 
