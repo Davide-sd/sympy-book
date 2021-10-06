@@ -19,125 +19,6 @@ import numpy as np
 ################################# PLOTTING #####################################
 ################################################################################
 
-def get_colors(N, cmap="tab10", vmin=0, vmax=10):
-    """ Get N colors from any specified matplotlib color map.
-
-    Parameters
-    ----------
-        N : int
-            number of data series in the plot
-        cmap : str
-            name of the matplotlib colormap. Default to "tab10"
-        vmin, vmax : float
-            the values provided to the matplotlib.colors.Normalize class.
-            Default: vmin=0, vmax=number of data series
-    """
-    if (not vmax) or (N > vmax):
-        vmax = N
-    import matplotlib.pyplot as plt
-    import matplotlib.colors as colors
-    import matplotlib.cm as cmx
-    if not cmap:
-        cmap = "tab10"
-    cm = plt.get_cmap(cmap) 
-    cNorm  = colors.Normalize(vmin=vmin, vmax=vmax)
-    scalarMap = cmx.ScalarMappable(norm=cNorm, cmap=cm)
-    return [scalarMap.to_rgba(i) for i in range(N)]
-
-def pplot(*args, **kwargs):
-    """ Pretty plot function. As of Sympy v1.6.1, it is clumsy and 
-    unconvenient to set colors and labels to data series in the standard 
-    plot() function. This function implement the automatic coloring
-    and allows to set a label to each data series.
-    
-    Parameters
-    ----------
-        *args: The usual plot() arguments: f1, f2, ..., range
-        **kwargs: the usual plot() keyword arguments
-        
-        label : str|tuple|list
-            the labels of the functions to plot. 
-            Must be len(label) = len(data series)
-        
-        Other keyword arguments to control the coloring and labeling:
-        cmap : str
-            name of the matplotlib colormap. Default to "tab10"
-        vmin, vmax : float
-            the values provided to the matplotlib.colors.Normalize class.
-            Default: vmin=0, vmax=number of data series
-    """
-    from sympy.plotting.plot import plot
-    
-    # don't show the plot right away, we need to change colors first
-    kwargs["show"] = False
-    labels = kwargs.pop("label", [])
-    vmin = kwargs.pop("vmin", 0)
-    vmax = kwargs.pop("vmax", 10)
-    cmap = kwargs.pop("cmap", "tab10")
-    
-    pl = plot(*args, **kwargs)
-    colors = get_colors(len(pl._series), cmap, vmin, vmax)
-    
-    for i, color in enumerate(colors):
-        pl[i].line_color = color
-    
-    if isinstance(labels, (str, list, tuple)) and len(labels) > 0:
-        if len(labels) != len(colors):
-            raise ValueError("""The number of labels must be equal to 
-            the number of functions to plot.
-            Received {} functions and {} labels
-            """.format(len(colors), len(labels)))
-        for i, label in enumerate(labels):
-            pl[i].label = label
-        
-    pl.show()
-    return pl
-
-def get_xy(expr, r=None, **kwargs):
-    """ Numerically evaluate `expr` in the provided range and returns two arrays
-    of coordinates, x, y, useful for plotting.
-
-    Parameters
-    ----------
-        expr : symbolic expression
-        r : tuple
-            The range where to compute the coordinates. Must be in the following
-            form: (symbol, x_min, x_max). If not provided, the range will be set
-            to (-10, 10).
-        adaptive : boolean
-            Use the adaptive algorithm to evaluate the expression. 
-            Default to True.
-        n : int
-            Number of evaluation points when adaptive=False.
-        xscale : string
-            Scale function to use. Default value to 'linear'. Other choice:
-            'log'.
-    
-    Returns
-    -------
-        x : numpy.ndarray
-            A one-dimensional array of x coordinates
-        y : numpy.ndarray
-            A one-dimensional array of y coordinates
-    """
-    if not r:
-        s = list(expr.free_symbols)
-        r = (s[0], -10, 10)
-    if len(r) != 3:
-        raise ValueError("r must represent a range of the form (symbol, start_value, end_value)")
-    n = kwargs.pop("n", 300)
-    kwargs.update({"nb_of_points": n})
-    from sympy.plotting.plot import LineOver1DRangeSeries
-    import numpy as np
-    line = LineOver1DRangeSeries(expr, r, **kwargs)
-    data = line.get_segments()
-    x = np.zeros(len(data) + 1)
-    y = np.zeros(len(data) + 1)
-    x[0], y[0] = data[0][0]
-    for i, d in enumerate(data):
-        x[i + 1], y[i + 1] = d[1]
-    return x, y
-
 def plot_arrows_direction_from_line(line, N=6, hw=.025, skipfirst=False):
     """ Add uniformly spaced arrows along the direction of a line.
     This is a wrapper function for plot_arrows_direction().
@@ -203,162 +84,11 @@ def plot_arrows_direction(x, y, color, N=6, hw=.025, skipfirst=False):
               shape='full', lw=0, length_includes_head=True, head_width=hw)
 
 
-import plotly.graph_objects as go
-from sympy.plotting.plot import BaseBackend
-
-class PlotlyBackend(BaseBackend):
-    """ A backend to use Plotly with SymPy.
-    
-    Requirements
-    ============
-
-    plotly 4.10.0 + kaleido (for exporting figures to files)
-    """
-    
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.fig = go.Figure()
-        
-        # color scales used in 3d plots
-        self.colorscales = [
-            'aggrnyl', 'plotly3', 'reds_r', 'ice', 'inferno', 
-            'deep_r', 'turbid_r', 'gnbu_r', 'geyser_r', 'oranges_r' 
-        ]
-        # wireframe colors used in 3d plots
-        self.wireframe_colors = [
-            "#0071c3", "#af67d9", "#e64b17", "#1378cd", "#be5466",
-            "#6f969e", "#aa692c", "#60ccc0", "#f2a45d", "#f2a45d"
-        ]
-    
-    @staticmethod
-    def _get_xy(line):
-        """ Convert the data generated from LineOver1DRangeSeries
-        in a tuple (x, y), where x and y are two lists with equal
-        number of elements
-        """
-        data = line.get_segments()
-        x = np.zeros(len(data) + 1)
-        y = np.zeros(len(data) + 1)
-        x[0], y[0] = data[0][0]
-        for i, d in enumerate(data):
-            x[i + 1], y[i + 1] = d[1]
-        return x, y
-    
-    def _process_series(self, series, parent):
-        for i, s in enumerate(series):
-            if s.is_2Dline:
-                xx, yy = self._get_xy(s)
-                self.fig.add_trace(
-                    go.Scatter(
-                        x=xx, y=yy, name=s.label
-                    )
-                )
-            elif s.is_3Dline:
-                xx, yy, zz = s.get_segments()
-                self.fig.add_trace(
-                    go.Scatter3d(
-                        x=xx, y=yy, z=zz,
-                        name=s.label, mode="lines",
-                        line=dict(
-                            width=4
-                        )
-                    )
-                )
-            elif s.is_3Dsurface:
-                xx, yy, zz = s.get_meshes()
-                self.fig.add_trace(
-                    go.Surface(
-                        x=xx, y=yy, z=zz,
-                        showscale=self.parent.legend,
-                        colorbar=dict(
-                            x = 1 + 0.1 * i
-                        ),
-                        colorscale=self.colorscales[i % 10]))
-                
-                # wireframe lines
-                line_marker = dict(
-                    color = self.wireframe_colors[i % 10],
-                    width = 2
-                )
-                for i, j, k in zip(xx, yy, zz):
-                    self.fig.add_trace(
-                        go.Scatter3d(
-                            x=i, y=j, z=k,
-                            mode='lines',
-                            line=line_marker
-                        )
-                    )
-                for i, j, k in zip(xx.T, yy.T, zz.T):
-                    self.fig.add_trace(
-                        go.Scatter3d(
-                            x=i, y=j, z=k,
-                            mode='lines',
-                            line=line_marker
-                        )
-                    )
-            elif s.is_contour:
-                xx, yy, zz = s.get_meshes()
-                xx = xx[0, :]
-                yy = yy[:, 0]
-                self.fig.add_trace(
-                    go.Contour(x=xx, y=yy, z=zz))
-            else:
-                raise NotImplementedError
-        
-    def _update_layout(self, parent):
-        self.fig.update_layout(
-            width = None if not parent.size else parent.size[0],
-            height = None if not parent.size else parent.size[1],
-            title = r"<b>%s</b>" % ("" if not parent.title else parent.title),
-            title_x = 0.5,
-            xaxis = dict(
-                title = "" if not parent.xlabel else parent.xlabel,
-                range = None if not parent.xlim else parent.xlim
-            ),
-            yaxis = dict(
-                title = "" if not parent.ylabel else parent.ylabel,
-                range = None if not parent.ylim else parent.ylim
-            ),
-            margin = dict(
-                t = 50,
-                l = 0,
-                b = 0,
-            ),
-            showlegend = self.parent.legend,
-            # template = "plotly_dark",
-            scene=dict(
-                xaxis = dict(
-                    title = "" if not parent.xlabel else parent.xlabel,
-                ),
-                yaxis = dict(
-                    title = "" if not parent.ylabel else parent.ylabel,
-                ),
-                # NOTE: Current implementation of the Plot class doesn't set th
-                # zlabel attribute :|
-            ),
-        )
-    
-    def show(self):
-        self._process_series(self.parent._series, self.parent)
-        self._update_layout(self.parent)
-        self.fig.show()
-
-    def save(self, path):
-        self._process_series(self.parent._series, self.parent)
-        self._update_layout(self.parent)
-        self.fig.write_image(path)
-
-    def close(self):
-        # there is no concept of close with Plotly
-        pass
-
-PB = PlotlyBackend
-
 ################################################################################
 ################################# LAMBDIFY #####################################
 ################################################################################
 
-def get_lambda(expr, modules="numpy", **kwargs):
+def get_lambda(expr, modules=["numpy", "scipy"], **kwargs):
     """ Create a lambda function to numerically evaluate expr by sorting 
     alphabetically the function arguments.
 
@@ -367,8 +97,8 @@ def get_lambda(expr, modules="numpy", **kwargs):
         expr : Expr
             The Sympy expression to convert.
         modules : str
-            The numerical module to use for evaluation. Default to "numpy".
-            See help(lambdify) for other choices.
+            The numerical module to use for evaluation. Default to 
+            ["numpy", "scipy"]. See help(lambdify) for other choices.
         **kwargs
             Other keyword arguments to the function lambdify.
 
@@ -468,7 +198,10 @@ class MyLatexPrinter(LatexPrinter):
         
     def _print_Function(self, expr, exp=None):
         if isinstance(expr, AppliedUndef) and self._settings["applied_no_args"]:
-            return expr.func.__name__
+            if exp is None:
+                return expr.func.__name__
+            else:
+                return r'%s^{%s}' % (expr.func.__name__, exp)
         return super()._print_Function(expr, exp)
     
     def _print_Derivative(self, expr):
@@ -560,7 +293,6 @@ class SawtoothWave(Function):
         return self.args[1]
     
     def _eval_subs(self, old, new):
-        print("_eval_subs", old, new)
         args = list(self.args)
         for i, a in enumerate(args):
             args[i] = a._subs(old, new)
@@ -578,7 +310,6 @@ class SawtoothWave(Function):
     
     def _getcode(self, module, printer):
         x, A, T, phi = self.args
-        print("_getcode", x, A, T, phi)
         return '({} * {}({}))[0]'.format(
             printer._print(A),
             printer._module_format(module),
@@ -706,7 +437,7 @@ def render_tree(expr, filename, format="png"):
 ################################################################################
 
 from sympy import Dummy, degree
-def linearize(expr, order=1, tup=None, **kwargs):
+def linearize(expr, order=1, tup=None, n=3, apply_lin=True):
     """ Get a linear approximation of a non-linear function.
 
     Parameters
@@ -726,20 +457,21 @@ def linearize(expr, order=1, tup=None, **kwargs):
         will extract from expr the undefined functions and perform the
         expansions around the value 0.
     
-    linearize : bool
+    n : int
+        Represents the actual order used by the series expansion. Default to 3
+        to speed up the process.
+    
+    apply_lin : bool
         This keyword controls the linearization; if set to False, the expression
         is only expanded and not linearized. In such a case, `order` will not be
         representative of the expression. Default to True.
     """
-    _linearize = kwargs.pop("linearize", True)
-    n = kwargs.pop("n", 3)
     if n < order:
         n = order
-        
     if not tup:
         from sympy.core.function import AppliedUndef
         tup = []
-        funcs = list(expr.atoms(AppliedUndef))
+        funcs = list(expr.find(AppliedUndef))
         for f in funcs:
             tup.append((f, 0))
 
@@ -750,8 +482,8 @@ def linearize(expr, order=1, tup=None, **kwargs):
         expr = expr.subs(f, s)
         subs_dict[s] = f
         expr = expr.series(s, f0, n).removeO()
-    
-    if _linearize:
+
+    if apply_lin:
         expr = expr.expand()
         get_degree = lambda expr, symbols: sum([degree(expr, gen=s) for s in symbols])
         args = [a for a in expr.args if get_degree(a, list(subs_dict.keys())) <= order]

@@ -2,14 +2,26 @@
 
 This repository contains the necessary Jupyter Notebooks and code to follow the book **"Symbolic Computation with Python and [SymPy](https://github.com/sympy/sympy/)"**, which can be purchased at:
 
-* Printed version from:
-  * [Amazon](https://www.amazon.com/dp/B08QWBY5WV/ref=sr_1_1?dchild=1&keywords=Symbolic+Computation+with+Python+and+SymPy&qid=1608389036&sr=8-1): it should be available in all amazon markets (COM, DE, IT, UK, ...).
-  * [Barnes and Noble](https://www.barnesandnoble.com/w/symbolic-computation-with-python-and-sympy-davide-sandon/1138719014?ean=9781666241198)
-* Ebook from [Barnes and Noble](https://www.barnesandnoble.com/w/symbolic-computation-with-python-and-sympy-davide-sandona/1138690415?ean=2940162333654).
+* **Amazon**: it is available in all amazon markets (COM, DE, IT, UK, ...).
+  * [Printed Version](https://www.amazon.com/dp/B09HJ1WZ7K)
+  * Ebook: for publishing reasons, the printed book had to be splitted in two volumes. Vol 1 + Vol 2 = Printed Book (or ebook from Barnes and Noble).
+    * [Volume 1 - Expression Manipulation](https://www.amazon.com/dp/B09HV4RQFS)
+    * [Volume 2 - Linear Algebra, Plotting and Code Generation](https://www.amazon.com/dp/B09HV9QQCL)
+* **Barnes and Noble**
+  * [Printed Version]()
+  * [Ebook](https://www.barnesandnoble.com/w?ean=2940162183976)
 
+<div>
 <a href="assets/cover.jpg"><img src="assets/cover.jpg" width=400/></a>
+<a href="assets/cover.jpg"><img src="assets/Cover-Vol-1-Second-Edition-small.jpg" width=191/></a>
+<a href="assets/cover.jpg"><img src="assets/Cover-Vol-2-Second-Edition-small.jpg" width=191/></a>
+</div>
 
-Please, read the [preview](assets/book-preview.pdf) to understand what this book offers and who should read it.
+Please, read the [preview](assets/preview-second-edition.pdf) to understand what this book offers and who should read it.
+
+## Editions
+
+This repository contains the material associated with the **second edition** of the book. The notebooks associated to the first edition can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
 
 ## Notebooks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
 
