@@ -8,8 +8,8 @@ This repository contains the necessary Jupyter Notebooks and code to follow the 
 
 <div>
 <a href="assets/cover.jpg"><img src="assets/cover.jpg" width=400/></a>
-<a href="assets/cover.jpg"><img src="assets/Cover-Vol-1-Third-Edition-small.jpg" width=191/></a>
-<a href="assets/cover.jpg"><img src="assets/Cover-Vol-2-Third-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-1-Third-Edition-small.jpg"><img src="assets/Cover-Vol-1-Third-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-2-Third-Edition-small.jpg"><img src="assets/Cover-Vol-2-Third-Edition-small.jpg" width=191/></a>
 </div>
 
 Please, read the [preview](assets/preview-third-edition.pdf) to understand what this book offers and who should read it.
