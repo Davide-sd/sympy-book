@@ -8,15 +8,15 @@ This repository contains the necessary Jupyter Notebooks and code to follow the 
 
 <div>
 <a href="assets/cover.jpg"><img src="assets/cover.jpg" width=400/></a>
-<a href="assets/Cover-Vol-1-Third-Edition-small.jpg"><img src="assets/Cover-Vol-1-Third-Edition-small.jpg" width=191/></a>
-<a href="assets/Cover-Vol-2-Third-Edition-small.jpg"><img src="assets/Cover-Vol-2-Third-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-1-Fourth-Edition-small.jpg"><img src="assets/Cover-Vol-1-Fourth-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-2-Fourth-Edition-small.jpg"><img src="assets/Cover-Vol-2-Fourth-Edition-small.jpg" width=191/></a>
 </div>
 
-Please, read the [preview](assets/preview-third-edition.pdf) to understand what this book offers and who should read it.
+Please, read the [preview](assets/preview-fourth-edition.pdf) to understand what this book offers and who should read it.
 
 ## Editions
 
-This repository contains the material associated with the **third edition** of the book. The notebooks associated to the first or second edition can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
+This repository contains the material associated with the **fourth edition** of the book. The notebooks associated to the previous editions can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
 
 ## Notebooks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
 
@@ -34,12 +34,4 @@ You can try the notebooks without downloading or installing the software by clic
 
 The following code files are included in the repository, which are going to be used by some notebooks:
 
-* `sympy_utils.py`: it contains functions and classes that can be useful to any SymPy user. Take a look at the `README.md` file contained in the `sympy_utils_module` folder to see a list of available functions/classes.
-
-
-## Module
-
-The function and classes contained in `sympy_utils.py` can also be useful in our every-day problems. Hence, a package has been created (the `sympy_utils_module` folder), which can be easily installed on our systems:
-
-* Open a terminal and move into the `sympy_utils_module` folder.
-* `pip3 install .`
+* `sympy_utils.py`: it contains functions and classes that can be useful to any SymPy user.
