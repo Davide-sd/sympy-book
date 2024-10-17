@@ -1,7 +1,8 @@
 from sympy import (
     AtomicExpr, sympify, Integer, Rational, NumberSymbol, dotprint,
     Basic, Equality, Expr, Derivative, Integral, simplify, collect,
-    collect_const, expand, factor, symbols, GreaterThan, sin, lambdify
+    collect_const, expand, factor, symbols, GreaterThan, sin, lambdify,
+    Symbol
 )
 from sympy.printing import latex
 from sympy.printing.pretty.stringpict import prettyForm

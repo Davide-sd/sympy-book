@@ -1,22 +1,26 @@
-# Symbolic Computation with SymPy
+# Symbolic Computation with Python and SymPy
 
 This repository contains the necessary Jupyter Notebooks and code to follow the book **"Symbolic Computation with Python and [SymPy](https://github.com/sympy/sympy/)"**, which can be purchased at **Amazon**: it is available in all amazon markets (COM, DE, IT, UK, ...).
   * [Printed Version](https://www.amazon.com/dp/B09HJ1WZ7K)
-  * Ebook: for publishing reasons, the printed book had to be splitted in two volumes. Vol 1 + Vol 2 = Printed Book.
+  * Ebook: for publishing reasons, the printed book had to be splitted in three volumes. Vol 1 + Vol 2 + Vol 3 = Printed Book.
     * [Volume 1 - Expression Manipulation](https://www.amazon.com/dp/B09HV4RQFS)
     * [Volume 2 - Linear Algebra, Plotting and Code Generation](https://www.amazon.com/dp/B09HV9QQCL)
+    * [Volume 3 - Equations of Motion, Simulations, Optimization](https://www.amazon.com/dp/B09HV9QQCL)
 
 <div>
 <a href="assets/cover.jpg"><img src="assets/cover.jpg" width=400/></a>
-<a href="assets/Cover-Vol-1-Fourth-Edition-small.jpg"><img src="assets/Cover-Vol-1-Fourth-Edition-small.jpg" width=191/></a>
-<a href="assets/Cover-Vol-2-Fourth-Edition-small.jpg"><img src="assets/Cover-Vol-2-Fourth-Edition-small.jpg" width=191/></a>
+</div>
+<div>
+<a href="assets/Cover-Vol-1-Fifth-Edition-small.jpg"><img src="assets/Cover-Vol-1-Fifth-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-2-Fifth-Edition-small.jpg"><img src="assets/Cover-Vol-2-Fifth-Edition-small.jpg" width=191/></a>
+<a href="assets/Cover-Vol-3-Fifth-Edition-small.jpg"><img src="assets/Cover-Vol-3-Fifth-Edition-small.jpg" width=191/></a>
 </div>
 
-Please, read the [preview](assets/preview-fourth-edition.pdf) to understand what this book offers and who should read it.
+Please, read the [preview](assets/preview-fifth-edition.pdf) to understand what this book offers and who should read it.
 
 ## Editions
 
-This repository contains the material associated with the **fourth edition** of the book. The notebooks associated to the previous editions can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
+This repository contains the material associated with the **fifth edition** of the book. The notebooks associated to the previous editions can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
 
 ## Notebooks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
 
