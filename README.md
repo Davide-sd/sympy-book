@@ -1,41 +1,19 @@
 # Symbolic Computation with Python and SymPy
 
 This repository contains the necessary Jupyter Notebooks and code to follow the book **"Symbolic Computation with Python and [SymPy](https://github.com/sympy/sympy/)"**, which can be purchased at **Amazon**: it is available in all amazon markets (COM, DE, IT, UK, ...).
-  * <div>
-      <a href="https://www.amazon.com/dp/B09HJ1WZ7K">
-        <div>Printed Version</div>
-        <div><img src="assets/cover.jpg" width=400/></div>
-      </a>
+  * [Printed Version](https://www.amazon.com/dp/B09HJ1WZ7K)
+    <div>
+      <a href="https://www.amazon.com/dp/B09HJ1WZ7K"><img src="assets/cover.jpg" width=400/></a>
     </div>
-
   * Ebook: for publishing reasons, the printed book had to be splitted in three volumes. Vol 1 + Vol 2 + Vol 3 = Printed Book.
-    <div style="display: flex;flex-wrap: wrap;">
-      <div style="text-align: center;margin: 5px;">
-        <a href="https://www.amazon.com/dp/B09HV4RQFS">
-          <div style="width: 190px;">Vol 1 - Expression Manipulation</div>
-          <div>
-            <img src="assets/Cover-Vol-1-Fifth-Edition-small.jpg" width=190/>
-          </div>
-        </a>
+    * [Volume 1 - Expression Manipulation](https://www.amazon.com/dp/B09HV4RQFS)
+    * [Volume 2 - Linear Algebra, Plotting and Code Generation](https://www.amazon.com/dp/B09HV9QQCL)
+    * [Volume 3 - Equations of Motion, Simulations, Optimization](https://www.amazon.com/dp/B0DK7YVVVH)
+      <div>
+        <a href="https://www.amazon.com/dp/B09HV4RQFS"><img src="assets/Cover-Vol-1-Fifth-Edition-small.jpg" width=191/></a>
+        <a href="https://www.amazon.com/dp/B09HV9QQCL"><img src="assets/Cover-Vol-2-Fifth-Edition-small.jpg" width=191/></a>
+        <a href="https://www.amazon.com/dp/B0DK7YVVVH"><img src="assets/Cover-Vol-3-Fifth-Edition-small.jpg" width=191/></a>
       </div>
-      <div style="text-align: center;margin: 5px;">
-        <a href="https://www.amazon.com/dp/B09HV9QQCL">
-          <div style="width: 190px;">Vol 2 - Linear Algebra, Code Generation, Plotting</div>
-          <div>
-            <img src="assets/Cover-Vol-2-Fifth-Edition-small.jpg" width=191/>
-          </div>
-        </a>
-      </div>
-      <div style="text-align: center;margin: 5px;">
-        <a href="https://www.amazon.com/dp/B0DK7YVVVH">
-          <div style="width: 190px;">Vol 3 - Equations of Motion, Simulations, Optimization</div>
-          <div>
-            <img src="assets/Cover-Vol-3-Fifth-Edition-small.jpg" width=190/>
-          </div>
-        </a>
-      </div>
-    </div>
-
 
 Please, read the [preview](assets/preview-fifth-edition.pdf) to understand what this book offers and who should read it.
 
