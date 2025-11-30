@@ -1,5 +1,6 @@
 # Symbolic Computation with Python and SymPy
 
+
 This repository contains the necessary Jupyter Notebooks and code to follow the book **"Symbolic Computation with Python and [SymPy](https://github.com/sympy/sympy/)"**, which can be purchased at **Amazon**: it is available in all amazon markets (COM, DE, IT, UK, ...).
   * [Printed Version](https://www.amazon.com/dp/B09HJ1WZ7K)
     <div>
@@ -17,6 +18,21 @@ This repository contains the necessary Jupyter Notebooks and code to follow the 
 
 Please, read the [preview](assets/preview-fifth-edition.pdf) to understand what this book offers and who should read it.
 
+
+## Updates
+
+As time passes, new versions of the packages are going to be released, which may or may not be compatible with what was available when this book was written.
+
+Here is a list of known changes:
+
+1. Chapter 1, sub-section **"Setting up Nbextensions"**. It appears that `jupyter_contrib_nbextensions` is no longer compatible with newer version of Jupyter Notebook. You can safely skip this section, and you will still be able to continue with the Book.
+2. Chapter 1, sub-section **"Installing the Algebra with SymPy module"**. Instead of installing `Algebra-with-SymPy`, install the [sympy_equation](https://sympy-equation.readthedocs.io/en/stable/index.html) module with one of these commands:
+
+   `pip install sympy_equation` or `conda install conda-forge::sympy_equation`.
+
+   This allows you to use the latest SymPy version.
+
+
 ## Editions
 
 This repository contains the material associated with the **fifth edition** of the book. The notebooks associated to the previous editions can be downloaded from the **Releases** page, which can be found on the right hand side of the screen.
@@ -32,6 +48,7 @@ Some chapters offers an *Advanced Topics* section, which is meant to be optional
 You can try the notebooks without downloading or installing the software by clicking the following button:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Davide-sd/sympy-book/HEAD)
+
 
 ## Code
 
